@@ -29,6 +29,7 @@ export default function App() {
           )
         })}
       </NavDropdown>
+      <Nav.Link href="/survey">Survey</Nav.Link>
     </Nav>
   </Navbar.Collapse>
 </Navbar>

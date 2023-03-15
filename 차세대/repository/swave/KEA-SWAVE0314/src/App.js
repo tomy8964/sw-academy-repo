@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css';
 import Vision from './component/Vision';
 import About from './component/About';
+import Survey from './component/Survey'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/vision" element={<Vision />} />
           <Route path="/teammate" element={<Teammate />} />
           <Route path="/teammate/:member" element={<About />} />
+          <Route path="/survey" element={<Survey />} />
         </Routes>
         <Footer />
       </div>
