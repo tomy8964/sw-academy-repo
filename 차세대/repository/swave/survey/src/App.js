@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import Header from './component/Header';
 import Footer from './component/Footer';
 import Teammate from './component/Teammate';
