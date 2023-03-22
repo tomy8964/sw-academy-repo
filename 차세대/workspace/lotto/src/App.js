@@ -40,6 +40,58 @@ const AppBlock = styled.button`
   }
 `;
 
+const StyledNumber = styled.button`
+  /* 공통 스타일 */
+  display: inline-flex;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  padding: 1rem 1rem 2rem 1rem;
+  margin: 1rem 1rem 1rem 1rem;
+
+  /* 크기 */
+  height: 2.25rem;
+  font-size: 1rem;
+
+  /* 색상 */
+  background: #ff9966;
+`;
+
+
+const Input = styled.input`
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  background: #e6e6e6;  
+  font-family: Montserrat-Bold;
+  font-size: 20px;
+  line-height: 2;
+  color: #666;
+  margin-bottom: 5px;
+  text-align: center;
+`;
+
+const StyledNumber2 = styled.button`
+  /* 공통 스타일 */
+  display: inline-flex;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  padding: 1rem 1rem 2rem 1rem;
+  margin: 1rem 1rem 1rem 1rem;
+
+  /* 크기 */
+  height: 2.25rem;
+  font-size: 1rem;
+
+  /* 색상 */
+  background: #FE2EC8;
+`;
+
 function App() {
   const lottoNum = atom({
     key:'lottoNum',
@@ -166,36 +218,41 @@ function App() {
     }
 
     function Result() {
+      function countNum() {
+        if ( count > 2 ) {
+          if(count===9){
+            return <StyledNumber2>1등 당첨!!</StyledNumber2>
+          } else {
+            return <StyledNumber2>Bonus!!</StyledNumber2>;
+          }
+        } else {
+            return null;
+        }
+      }
       if(ready>1){
         return(
           <div>
-            <p>로또 번호: </p><input type="text" value={lotto} />
-            <p>추첨 번호: </p><input type="text" value={random} />
-            <p>맞힌 갯수: {count} </p>
+            <h3>로또 번호</h3>{lotto[0].map((ran)=> <><StyledNumber>{ran}</StyledNumber><span> </span></>)}
+            <h3>추첨 번호</h3>{random[0].map((ran)=> <><StyledNumber>{ran}</StyledNumber><span> </span></>)}
+            <h3>맞힌 갯수</h3><StyledNumber2>{count}</StyledNumber2> 
+            {countNum()}
           </div>
         );
       }
-      if ( count > 2 ) {
-        if(count===9){
-          return <p>1등 당첨!!</p>
-        } else{
-          return <p>Bonus!!</p>;
-        }
-      } else {
-          return null;
-      }
+
+      
     }
 
     return(
       <div>
-        <input type="text" value={intInput1} onChange={onChange1} />
+        <Input type="text" value={intInput1} onChange={onChange1} />
         <br />
-        <input type="text" value={intInput2} onChange={onChange2} />
+        <Input type="text" value={intInput2} onChange={onChange2} />
         <br />
         <br />
-        <div>Number1: {intInput1}</div>
+        <StyledNumber>{intInput1}</StyledNumber>
         <br />
-        <div>Number2: {intInput2}</div>
+        <StyledNumber>{intInput2}</StyledNumber>
         <br />
         <AppBlock onClick={lottoStart}>Two num input</AppBlock>
         <AppBlock onClick={lottoStart}>lotto start</AppBlock>
@@ -211,8 +268,7 @@ function App() {
   return (
     <RecoilRoot>
       <div className='App'>
-        <h1>Hello GCU-Kakao</h1>
-        <h2>Lotto</h2>
+        <h1>Lotto</h1>
         <IntInput />
       </div>
     </RecoilRoot>
