@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65852c23-c83e-419a-914e-347879f359b6" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../repository/swave/KEAPROJECT-main" beforeDir="false" afterPath="$PROJECT_DIR$/../../../repository/swave/KEAPROJECT-main" afterDir="false" />
+    <list default="true" id="b9a2927e-4f26-41bf-b7ed-282a7606fc96" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/gcu/backend/gcurest/Car.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gcu/backend/gcurest/CarRest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../repository/swave/KEAPROJECT-main" beforeDir="false" afterPath="$PROJECT_DIR$/../../repository/swave/KEAPROJECT-main" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +22,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -38,7 +40,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectId" id="2NcYsjnXABAS56nolhqaZqJy3q9" />
+  <component name="ProjectId" id="2NcbYprIkNTUNHlN7QxpqgXhCxf" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -47,6 +49,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
@@ -55,12 +61,14 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "SDK",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\HamGeonwook\OneDrive\Desktop\카앤프\챗봇\차세대\workspace\gcurest\src" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="GcurestApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="gcurest" />
@@ -73,12 +81,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="디폴트 작업">
-      <changelist id="65852c23-c83e-419a-914e-347879f359b6" name="변경" comment="" />
-      <created>1679965049814</created>
+      <changelist id="b9a2927e-4f26-41bf-b7ed-282a7606fc96" name="변경" comment="" />
+      <created>1679966368788</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1679965049814</updated>
-      <workItem from="1679965050752" duration="1274000" />
+      <updated>1679966368788</updated>
+      <workItem from="1679966369962" duration="3682000" />
     </task>
     <servers />
   </component>
