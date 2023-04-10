@@ -12,14 +12,9 @@ import com.example.demo.survey.request.SurveyFullRequestDto;
 import com.example.demo.survey.request.SurveyRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +31,7 @@ public class SurveyService {
         Survey survey = new Survey();
         survey.setId(request.getId());
         survey.setTitle(request.getTitle());
-        survey.setType(request.getType());
+        survey.setType(Integer.toString(request.getType()));
         survey.setDescription(request.getDescription());
         Survey savesurvey = surveyRepository.save(survey);
 
@@ -63,10 +58,10 @@ public class SurveyService {
     // todo : task 2
     public List<SurveyRequestDto> readSurveyList() {
 
-        List<Survey> surveyRequestDtos = surveyRepository.findAll();
-        System.out.println(surveyRequestDtos);
+        List<Survey> surveyRequestDtoList = surveyRepository.findAll();
+        System.out.println(surveyRequestDtoList);
         List<SurveyRequestDto> dataToSend = new ArrayList<>();
-        for (Survey survey : surveyRequestDtos) {
+        for (Survey survey : surveyRequestDtoList) {
             System.out.println(survey.getTitle());
             System.out.println(survey.getDescription());
             System.out.println(survey.getType());
@@ -74,7 +69,6 @@ public class SurveyService {
         }
         System.out.println(dataToSend.get(0).toString());
         return dataToSend;
-
     }
 
     // todo : task 3
@@ -83,7 +77,7 @@ public class SurveyService {
         Survey survey = surveyRepository.findById(surveyId).get();
         surveyFull.setId(survey.getId());
         surveyFull.setTitle(survey.getTitle());
-        surveyFull.setType(survey.getType());
+        surveyFull.setType(Integer.parseInt(survey.getType()));
         surveyFull.setDescription(survey.getDescription());
         List<QuestionRequestDto> questionList = new ArrayList<>();
         List<Question> questions = survey.getQuestionList();

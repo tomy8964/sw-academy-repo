@@ -13,7 +13,7 @@ import java.util.List;
 public class SurveyFullRequestDto {
     long id;
     String title;
-    String type;
+    int type;
     String description;
     List<QuestionRequestDto> questions;
 
