@@ -13,15 +13,15 @@ import lombok.ToString;
 public class Choice {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String choiceName;
+    private String content;
 
     @ManyToOne
     @JoinColumn(name = "questionId")
     private Question questionId;
 
     @Builder
-    public Choice(Long id, String choiceName) {
+    public Choice(Long id, String content) {
         this.id = id;
-        this.choiceName = choiceName;
+        this.content = content;
     }
 }

@@ -29,46 +29,45 @@ public class SurveyService {
     // todo : task 1
     public String createSurvey(SurveyFullRequestDto request) {
         Survey survey = new Survey();
-        survey.setId(request.getId());
         survey.setTitle(request.getTitle());
-        survey.setType(Integer.toString(request.getType()));
+        survey.setType(request.getType());
+        survey.setFont(request.getFont());
+        survey.setFontSize(request.getFontSize());
         survey.setDescription(request.getDescription());
         Survey savesurvey = surveyRepository.save(survey);
-
-        for(QuestionRequestDto questionRequestDto : request.getQuestions()){
+        for(QuestionRequestDto questionRequestDto : request.getContent()){
             Question newQuestion = new Question();
             newQuestion.setSurvey_id(savesurvey);
-            newQuestion.setDescription(questionRequestDto.getDescription());
+            newQuestion.setCategoryId(questionRequestDto.getCategoryId());
+            newQuestion.setProblemTitle(questionRequestDto.getProblemTitle());
             Question savedQuestion = questionRepository.save(newQuestion);
-            if (questionRequestDto.getChoiceList().size() > 0) {
-                for (ChoiceRequestDto choiceRequestDto : questionRequestDto.getChoiceList()) {
+            if (questionRequestDto.getContent().size() > 0) {
+                for (ChoiceRequestDto choiceRequestDto : questionRequestDto.getContent()) {
                     Choice newChoice = new Choice();
-                    newChoice.setChoiceName(choiceRequestDto.getChoiceName());
+                    newChoice.setContent(choiceRequestDto.getContent());
                     newChoice.setQuestionId(savedQuestion);
                     choiceRepository.save(newChoice);
                 }
             }
-
-
         }
-
         return "Success";
     }
 
     // todo : task 2
     public List<SurveyRequestDto> readSurveyList() {
 
-        List<Survey> surveyRequestDtoList = surveyRepository.findAll();
-        System.out.println(surveyRequestDtoList);
+        List<Survey> surveyRequestDtos = surveyRepository.findAll();
+        System.out.println(surveyRequestDtos);
         List<SurveyRequestDto> dataToSend = new ArrayList<>();
-        for (Survey survey : surveyRequestDtoList) {
+        for (Survey survey : surveyRequestDtos) {
             System.out.println(survey.getTitle());
             System.out.println(survey.getDescription());
             System.out.println(survey.getType());
-            dataToSend.add(new SurveyRequestDto(survey.getTitle(),survey.getDescription(),Integer.parseInt(survey.getType())));
+            dataToSend.add(new SurveyRequestDto(survey.getTitle(),survey.getDescription(), Math.toIntExact(survey.getType())));
         }
         System.out.println(dataToSend.get(0).toString());
         return dataToSend;
+
     }
 
     // todo : task 3
@@ -77,26 +76,29 @@ public class SurveyService {
         Survey survey = surveyRepository.findById(surveyId).get();
         surveyFull.setId(survey.getId());
         surveyFull.setTitle(survey.getTitle());
-        surveyFull.setType(Integer.parseInt(survey.getType()));
+        surveyFull.setType(survey.getType());
         surveyFull.setDescription(survey.getDescription());
         List<QuestionRequestDto> questionList = new ArrayList<>();
-        List<Question> questions = survey.getQuestionList();
+        List<Question> questions = survey.getContent();
         System.out.println(survey);
         for (Question questions1 : questions) {
             QuestionRequestDto question = new QuestionRequestDto();
-            question.setId(questions1.getId());
-            question.setDescription(questions1.getDescription());
+            question.setProblemId(questions1.getProblemId());
+            question.setProblemTitle(questions1.getProblemTitle());
+            question.setCategoryId(questions1.getCategoryId());
+            question.setProblemTitle(questions1.getProblemTitle());
             List<ChoiceRequestDto> choices = new ArrayList<>();
-            for (Choice choice1 : questions1.getChoiceList()) {
+
+            for (Choice choice1 : questions1.getContent()){
                 ChoiceRequestDto choice = new ChoiceRequestDto();
                 choice.setId(choice1.getId());
-                choice.setChoiceName(choice1.getChoiceName());
+                choice.setContent(choice1.getContent());
                 choices.add(choice);
             }
-            question.setChoiceList(choices);
+            question.setContent(choices);
             questionList.add(question);
         }
-        surveyFull.setQuestions(questionList);
+        surveyFull.setContent(questionList);
 
         return surveyFull;
     }

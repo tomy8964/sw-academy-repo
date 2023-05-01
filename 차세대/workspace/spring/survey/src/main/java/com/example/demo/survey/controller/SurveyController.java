@@ -1,6 +1,5 @@
 package com.example.demo.survey.controller;
 
-import com.example.demo.survey.repository.SurveyRepository;
 import com.example.demo.survey.request.SurveyFullRequestDto;
 import com.example.demo.survey.request.SurveyRequestDto;
 import com.example.demo.survey.service.SurveyService;

@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChoiceRequestDto {
-    private Long id;
-    private String choiceName;
+    Long id;
+    String content;
 }

@@ -10,8 +10,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QuestionRequestDto {
-    private Long id;
-    private String title;
-    private String description;
-    private List<ChoiceRequestDto> choiceList;
+    Long problemId;
+    int categoryId;
+    String problemTitle;
+    List<ChoiceRequestDto> content;
 }

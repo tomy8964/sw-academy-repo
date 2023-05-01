@@ -15,21 +15,22 @@ import java.util.Set;
 @ToString(exclude={"survey_id"})
 public class Question {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String title;
-    private String description;
+    private Long problemId;
+    private int categoryId;
+    private String problemTitle;
+
     @OneToMany(mappedBy = "questionId", fetch = FetchType.LAZY)
-    private List<Choice> choiceList;
+    private List<Choice> content;
 
     @ManyToOne
     @JoinColumn(name = "survey_id")
     private Survey survey_id;
 
     @Builder
-    public Question(Long id, String title, String description, List<Choice> choiceList) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.choiceList = choiceList;
+    public Question(Long problemId, int categoryId, String problemTitle, List<Choice> content) {
+        this.problemId = problemId;
+        this.categoryId = categoryId;
+        this.problemTitle = problemTitle;
+        this.content = content;
     }
 }

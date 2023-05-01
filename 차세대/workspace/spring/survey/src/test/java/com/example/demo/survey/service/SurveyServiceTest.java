@@ -13,7 +13,6 @@ import com.example.demo.survey.request.SurveyRequestDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
@@ -40,16 +39,16 @@ class SurveyServiceTest {
         request.setDescription("Test Description");
 
         QuestionRequestDto question1 = new QuestionRequestDto();
-        question1.setDescription("Test Question 1");
+        question1.setProblemTitle("Test Question 1");
 
         ChoiceRequestDto choice1 = new ChoiceRequestDto();
-        choice1.setChoiceName("Test Choice 1");
+        choice1.setContent("Test Choice 1");
 
         ChoiceRequestDto choice2 = new ChoiceRequestDto();
-        choice2.setChoiceName("Test Choice 2");
+        choice2.setContent("Test Choice 2");
 
-        question1.setChoiceList(Arrays.asList(choice1, choice2));
-        request.setQuestions(Arrays.asList(question1));
+        question1.setContent(Arrays.asList(choice1, choice2));
+        request.setContent(Arrays.asList(question1));
 
         // when
         String result = surveyService.createSurvey(request);
@@ -61,25 +60,25 @@ class SurveyServiceTest {
 
         Survey survey = surveyList.get(0);
         assertEquals(survey.getTitle(), request.getTitle());
-        assertEquals(survey.getType(), Integer.toString(request.getType()));
+        assertEquals(survey.getType(), request.getType());
         assertEquals(survey.getDescription(), request.getDescription());
 
         List<Question> questionList = questionRepository.findAll();
         assertEquals(questionList.size(), 1);
 
         Question question = questionList.get(0);
-        assertEquals(question.getDescription(), question1.getDescription());
+        assertEquals(question.getProblemTitle(), question1.getProblemTitle());
         assertEquals(question.getSurvey_id(), survey);
 
         List<Choice> choiceList = choiceRepository.findAll();
         assertEquals(choiceList.size(), 2);
 
         Choice choice1Result = choiceList.get(0);
-        assertEquals(choice1Result.getChoiceName(), choice1.getChoiceName());
+        assertEquals(choice1Result.getContent(), choice1.getContent());
         assertEquals(choice1Result.getQuestionId(), question);
 
         Choice choice2Result = choiceList.get(1);
-        assertEquals(choice2Result.getChoiceName(), choice2.getChoiceName());
+        assertEquals(choice2Result.getContent(), choice2.getContent());
         assertEquals(choice2Result.getQuestionId(), question);
     }
 
@@ -90,13 +89,13 @@ class SurveyServiceTest {
         // given
         Survey survey1 = new Survey();
         survey1.setTitle("Survey 1");
-        survey1.setType("1");
+        survey1.setType(1);
         survey1.setDescription("Description 1");
         surveyRepository.save(survey1);
 
         Survey survey2 = new Survey();
         survey2.setTitle("Survey 2");
-        survey2.setType("2");
+        survey2.setType(2);
         survey2.setDescription("Description 2");
         surveyRepository.save(survey2);
 
@@ -119,16 +118,16 @@ class SurveyServiceTest {
         // given
         Survey survey = new Survey();
         survey.setTitle("Test Survey");
-        survey.setType("1");
+        survey.setType(1);
         survey.setDescription("Test Description");
         Question question = new Question();
-        question.setDescription("Test Question");
+        question.setProblemTitle("Test Question");
         Choice choice1 = new Choice();
-        choice1.setChoiceName("Test Choice 1");
+        choice1.setContent("Test Choice 1");
         Choice choice2 = new Choice();
-        choice2.setChoiceName("Test Choice 2");
-        question.setChoiceList(Arrays.asList(choice1, choice2));
-        survey.setQuestionList(Arrays.asList(question));
+        choice2.setContent("Test Choice 2");
+        question.setContent(Arrays.asList(choice1, choice2));
+        survey.setContent(Arrays.asList(question));
         Survey savedSurvey = surveyRepository.save(survey);
 
         // when
@@ -136,13 +135,13 @@ class SurveyServiceTest {
 
         // then
         assertEquals(savedSurvey.getTitle(), surveyFull.getTitle());
-        assertEquals(Integer.parseInt(savedSurvey.getType()), surveyFull.getType());
+        assertEquals(savedSurvey.getType(), surveyFull.getType());
         assertEquals(savedSurvey.getDescription(), surveyFull.getDescription());
-        assertEquals(savedSurvey.getQuestionList().size(), surveyFull.getQuestions().size());
-        assertEquals(savedSurvey.getQuestionList().get(0).getDescription(), surveyFull.getQuestions().get(0).getDescription());
-        assertEquals(savedSurvey.getQuestionList().get(0).getChoiceList().size(), surveyFull.getQuestions().get(0).getChoiceList().size());
-        assertEquals(savedSurvey.getQuestionList().get(0).getChoiceList().get(0).getChoiceName(), surveyFull.getQuestions().get(0).getChoiceList().get(0).getChoiceName());
-        assertEquals(savedSurvey.getQuestionList().get(0).getChoiceList().get(1).getChoiceName(), surveyFull.getQuestions().get(0).getChoiceList().get(1).getChoiceName());
+        assertEquals(savedSurvey.getContent().size(), surveyFull.getContent().size());
+        assertEquals(savedSurvey.getContent().get(0).getProblemTitle(), surveyFull.getContent().get(0).getProblemTitle());
+        assertEquals(savedSurvey.getContent().get(0).getContent().size(), surveyFull.getContent().get(0).getContent().size());
+        assertEquals(savedSurvey.getContent().get(0).getContent().get(0).getContent(), surveyFull.getContent().get(0).getContent().get(0).getContent());
+        assertEquals(savedSurvey.getContent().get(0).getContent().get(1).getContent(), surveyFull.getContent().get(0).getContent().get(1).getContent());
     }
 
 }

@@ -2,6 +2,11 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/../../.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SWAVE_SURVEY/Back-end" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SWAVE_SURVEY/Front-end" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SWAVE_SURVEY/새 폴더" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SWAVE_SURVEY/새 폴더 (2)" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SWAVE_SURVEY/새 폴더 (2)/Back-end" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/survey" vcs="Git" />
   </component>
 </project>
